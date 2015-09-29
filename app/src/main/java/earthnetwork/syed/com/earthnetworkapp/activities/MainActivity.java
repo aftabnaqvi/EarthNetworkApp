@@ -3,17 +3,16 @@ package earthnetwork.syed.com.earthnetworkapp.activities;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import earthnetwork.syed.com.earthnetworkapp.Helpers.Device;
 import earthnetwork.syed.com.earthnetworkapp.R;
-import earthnetwork.syed.com.earthnetworkapp.Utils;
 import earthnetwork.syed.com.earthnetworkapp.fragments.ImagesFragment;
 import earthnetwork.syed.com.earthnetworkapp.fragments.ImagesTabletFragment;
 
-
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +25,9 @@ public class MainActivity extends ActionBarActivity {
     private void setupUI() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content);
 
-        Utils util = new Utils(this);
-
-        if(util.isPhone() || util.isTablet()){
+        if(Device.isPhone() || Device.isTablet()){
             fragment = createTargetFragment(ImagesFragment.class);
-        } else if(util.isXLargeTablet()) {
+        } else if(Device.isXLargeTablet()) {
             fragment = createTargetFragment(ImagesTabletFragment.class);
         }
 
@@ -49,8 +46,6 @@ public class MainActivity extends ActionBarActivity {
 
         return fragment;
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

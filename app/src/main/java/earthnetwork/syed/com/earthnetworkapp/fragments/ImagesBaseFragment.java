@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -21,15 +22,15 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import earthnetwork.syed.com.earthnetworkapp.Adapters.ImagesAdapter;
+import earthnetwork.syed.com.earthnetworkapp.Application.EarthNetworkApplication;
 import earthnetwork.syed.com.earthnetworkapp.R;
+import earthnetwork.syed.com.earthnetworkapp.Utils.Utils;
 import earthnetwork.syed.com.earthnetworkapp.models.Image;
 
 /**
  * Created by snaqvi on 9/27/15.
  */
 public class ImagesBaseFragment extends Fragment {
-    // This is the base url for images. We will construct the complete url with this url by adding filename.
-    protected final String mImagesBaseUrl = "http://entest-webappslab.rhcloud.com/images/";
     // We will get json from this url.
     protected final String mUrl = "http://entest-webappslab.rhcloud.com/data/data.json";
 
@@ -60,7 +61,14 @@ public class ImagesBaseFragment extends Fragment {
         return view;
     }
 
+
     protected void getImages(){
+        if(!Utils.isNetworkAvailable()){
+            // Toasts are not good but for sake of alert, I am showing this toast.
+            Toast.makeText(EarthNetworkApplication.getContext(), "Internet is not available", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // creating  network client, to initiate the network request.
         AsyncHttpClient client = new AsyncHttpClient();
 
@@ -83,19 +91,19 @@ public class ImagesBaseFragment extends Fragment {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
-                Log.e("ERROR: Wrong response.", response.toString());
+                Log.e("ERROR: Wrong response.", response!=null?response.toString():"onSuccess. Not expecting this....");
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Log.e("ERROR", errorResponse.toString());
+                Log.e("ERROR", errorResponse!=null?errorResponse.toString():"OnFailure. Network call failed. Please check your internet.");
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
-                Log.e("ERROR", errorResponse.toString());
+                Log.e("ERROR", errorResponse != null ? errorResponse.toString() : "OnFailure. Network call failed.");
             }
 
             @Override

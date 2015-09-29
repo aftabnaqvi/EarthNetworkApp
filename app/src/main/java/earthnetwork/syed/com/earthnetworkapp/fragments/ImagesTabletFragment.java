@@ -16,7 +16,7 @@ public class ImagesTabletFragment extends ImagesBaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        GridLayoutManager layout = new GridLayoutManager(getActivity(), 3);
+        GridLayoutManager layout = new GridLayoutManager(getActivity(), 4);
         mRvImages.setLayoutManager(layout);
 
         getImages();

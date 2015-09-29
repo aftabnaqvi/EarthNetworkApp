@@ -57,5 +57,10 @@ public class Image implements Serializable{
     public String getFilename() {
         return mFilename;
     }
+
+    public static String getImageBaseUrl(){
+        // This is the base url for images. We will construct the complete url with this url by adding filename.
+        return "http://entest-webappslab.rhcloud.com/images/";
+    }
 }
 

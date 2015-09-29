@@ -5,56 +5,42 @@
     android:layout_height="match_parent">
 
 
-    <!--<ImageView-->
-        <!--android:id="@+id/ivMainImage"-->
-        <!--android:transitionName="profile"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginBottom="100dp"-->
-        <!--android:layout_alignParentTop="true"-->
-         <!--/>-->
-
-    <RelativeLayout
-        android:id="@+id/rlInfo"
-        android:layout_below="@+id/rlImage"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
-
-        <View
-            android:id="@+id/vPalette"
-            android:transitionName="palette"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
         <TextView
-            android:id="@+id/tvDescription"
-            android:transitionName="name"
-            android:layout_centerInParent="true"
-            android:textSize="@dimen/contact_text_size"
-            android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/tvName"
+            android:layout_margin="@dimen/margin"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/text_black"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/tvDescription"
+            android:layout_margin="@dimen/margin"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/text_blue"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivMainImage"
+        android:layout_margin="@dimen/margin"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/rlInfo"
-        android:id="@+id/rlImage">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ivMainImage"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/linearLayout" />
 </RelativeLayout>
-
