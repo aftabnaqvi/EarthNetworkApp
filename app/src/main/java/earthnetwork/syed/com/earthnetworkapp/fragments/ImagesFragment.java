@@ -22,6 +22,4 @@ public class ImagesFragment extends ImagesBaseFragment{
         getImages();
         return view;
     }
-
-
 }
